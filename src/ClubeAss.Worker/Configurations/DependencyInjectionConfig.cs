@@ -1,7 +1,9 @@
 ﻿using ClubeAss.Application;
 using ClubeAss.Domain.Interface.Application;
 using ClubeAss.Domain.Interface.Repository;
+using ClubeAss.Domain.Worker;
 using ClubeAss.Repository.Ef;
+using ClubeAss.Worker;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -25,6 +27,10 @@ namespace ClubeAss.API.Customer.Configurations
 
             #endregion
 
+
+            #region Worker
+            services.AddScoped<IScopedProcessingService, DefaultScopedProcessingService>();
+            #endregion
 
             return services;
         }

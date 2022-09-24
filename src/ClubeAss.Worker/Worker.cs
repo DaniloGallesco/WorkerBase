@@ -16,31 +16,8 @@ namespace ClubeAss.Worker
         public Worker(ILogger<Worker> logger, IServiceProvider serviceProvider)
         {
             _logger = logger;
-
             _serviceProvider = serviceProvider;
         }
-
-        //protected override async Task ExecuteAsync(CancellationToken stoppingToken)
-        //{
-        //    while (!stoppingToken.IsCancellationRequested)
-        //    {
-        //        using (LogContext.PushProperty("correlationId", Guid.NewGuid().ToString()))
-        //        {
-        //            _logger.LogInformation("Log de fora");
-        //            _ = _customerApplication.Add(new API.Customer.ViewModel.Customer.CustomerAddRequest() { Nome = Guid.NewGuid().ToString() }).Result;
-        //            await Task.Delay(1000, stoppingToken);
-        //        }
-
-        //    }
-        //}
-
-
-
-
-
-
-
-
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {

@@ -10,7 +10,6 @@ namespace ClubeAss.Worker
 {
     public class DefaultScopedProcessingService : IScopedProcessingService
     {
-        private int _executionCount;
         private readonly ILogger<DefaultScopedProcessingService> _logger;
         private readonly ICustomerApplication _customerApplication;
 
@@ -23,21 +22,19 @@ namespace ClubeAss.Worker
         {
             while (!stoppingToken.IsCancellationRequested)
             {
-                ++_executionCount;
-
-                _logger.LogInformation(
-                    "{ServiceName} working, execution count: {Count}",
-                    nameof(DefaultScopedProcessingService),
-                    _executionCount);
-
                 using (LogContext.PushProperty("correlationId", Guid.NewGuid().ToString()))
                 {
-                    _logger.LogInformation("Log de fora");
-                    _ = _customerApplication.Add(new API.Customer.ViewModel.Customer.CustomerAddRequest() { Nome = Guid.NewGuid().ToString() }).Result;
-                    await Task.Delay(1000, stoppingToken);
+                    try
+                    {
+                        _logger.LogInformation("Inicio");
+                        //_ = _customerApplication.Add(new API.Customer.ViewModel.Customer.CustomerAddRequest() { Nome = Guid.NewGuid().ToString() }).Result;
+                        _logger.LogInformation("FIM");
+                    }
+                    catch (Exception ex)
+                    {
+                        _logger.LogError(ex, "Erro");
+                    }
                 }
-
-                await Task.Delay(10_000, stoppingToken);
             }
         }
     }

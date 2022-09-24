@@ -1,5 +1,4 @@
 using ClubeAss.API.Customer.Base;
-using ClubeAss.Domain.Worker;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -42,14 +41,14 @@ namespace ClubeAss.Worker
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
                 .UseSerilog()
-                .ConfigureServices(services =>
+               .ConfigureWebHostDefaults(webBuilder =>
+               {
+                   webBuilder.UseStartup<Startup>();
+               })
+               .ConfigureServices(services =>
                 {
                     services.AddHostedService<Worker>();
-                    services.AddScoped<IScopedProcessingService, DefaultScopedProcessingService>();
                 })
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
+                ;
     }
 }
