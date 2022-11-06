@@ -18,6 +18,8 @@ namespace ClubeAss.API.Customer.Configurations
     {
         public static IServiceCollection AddServiceDependencyInjectionConfig(this IServiceCollection services, IConfiguration configuration)
         {
+            if (services == null) throw new ArgumentNullException(nameof(services));
+
             #region Application
             services.AddTransient<ICustomerApplication, CustomerApplication>();
             #endregion

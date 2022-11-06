@@ -13,6 +13,8 @@ namespace ClubeAss.API.Customer.Configurations
     {
         public static IServiceCollection AddServiceAutoMapperConfig(this IServiceCollection services)
         {
+            if (services == null) throw new ArgumentNullException(nameof(services));
+
             var config = new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<CustomerResponse, Domain.Customer>();

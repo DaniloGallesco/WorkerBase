@@ -26,14 +26,12 @@ namespace ClubeAss.Application
 
         public Task<BaseResponse> Add(CustomerAddRequest request)
         {
-            _logger.LogInformation("Log de dentro");
 
             var customer = _mapper.Map<CustomerAddRequest, Customer>(request);
 
             _clienteRepositorio.Add(customer);
 
             return Task.FromResult(new BaseResponse(System.Net.HttpStatusCode.OK));
-
         }
 
         public Task<BaseResponse> GetAll()

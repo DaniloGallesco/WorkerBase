@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Prometheus;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
@@ -18,6 +19,8 @@ namespace ClubeAss.Worker.Customer.Configurations
     {
         public static IServiceCollection AddServiceAppConfig(this IServiceCollection services, IConfiguration configuration)
         {
+            if (services == null) throw new ArgumentNullException(nameof(services));
+
             services.AddControllers();
 
             services.AddRouting(options => options.LowercaseUrls = true);
@@ -27,7 +30,6 @@ namespace ClubeAss.Worker.Customer.Configurations
                 options.Providers.Add<GzipCompressionProvider>();
             });
 
-            services.AddLocalization(options => options.ResourcesPath = "Resources");
             services.Configure<RequestLocalizationOptions>(
                 options =>
                 {

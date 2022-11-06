@@ -17,9 +17,9 @@ namespace ClubeAss.Repository.Ef
             db = context;
         }
 
-        public async void Add(Customer customer)
+        public void Add(Customer customer)
         {
-            await db.Customers.AddAsync(customer);
+            db.Customers.Add(customer);
             db.SaveChanges();
         }
 

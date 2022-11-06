@@ -1,4 +1,5 @@
 using ClubeAss.API.Customer.Configurations;
+using ClubeAss.Worker.Customer.Configurations;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -25,6 +26,7 @@ namespace ClubeAss.Worker
             services.AddServiceHealthcheckConfig(Configuration);
             services.AddServiceAutoMapperConfig();
             services.AddDatabaseConfig(Configuration);
+            services.AddServiceCircuitBreakerConfig(services.BuildServiceProvider());
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Prometheus;
+using System;
 using System.Diagnostics.CodeAnalysis;
 
 namespace ClubeAss.API.Customer.Configurations
@@ -14,6 +15,8 @@ namespace ClubeAss.API.Customer.Configurations
     {
         public static IServiceCollection AddServiceHealthcheckConfig(this IServiceCollection services, IConfiguration configuration)
         {
+            if (services == null) throw new ArgumentNullException(nameof(services));
+
             services.AddHealthChecks()
                 .AddNpgSql(configuration.GetConnectionString("PGConexao"), name: "Postgres", tags: new string[] { "db", "data" }).ForwardToPrometheus();
 

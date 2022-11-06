@@ -10,4 +10,10 @@
     {
         public int PGConexao { get; set; }
     }
+
+    public class CircuitBreaker
+    {
+        public int DurationOfBreak { get; set; }
+        public int ExceptionsAllowedBeforeBreaking { get; set; }
+    }
 }

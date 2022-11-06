@@ -13,6 +13,8 @@ namespace ClubeAss.API.Customer.Configurations
     {
         public static IServiceCollection AddServiceSerilogConfig(this IServiceCollection services)
         {
+            if (services == null) throw new ArgumentNullException(nameof(services));
+
             throw new NotImplementedException();
         }
 

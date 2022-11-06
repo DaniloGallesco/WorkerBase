@@ -12,6 +12,7 @@ namespace ClubeAss.API.Customer.Configurations
     {
         public static IServiceCollection AddServicePrometheusConfig(this IServiceCollection services)
         {
+            if (services == null) throw new ArgumentNullException(nameof(services));
 
             throw new NotImplementedException();
         }
